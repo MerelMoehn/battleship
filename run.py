@@ -32,7 +32,9 @@ class Gameboard:
         if self.type == "Player":
             self.shiploc.append((x_cord, y_cord))
             self.board[x_cord][y_cord] = "@"
-            
+        else:
+            self.shiploc.append((x_cord, y_cord))
+
 
 def populate_board(board):
     x_cord = randint(0, 4)
@@ -60,6 +62,7 @@ def new_game():
         populate_board(players_board)
         populate_board(computer_board)
     print(players_board.print())
+    print(computer_board.shiploc)
 
 
 print("WELCOME! ARE YOU READY TO BATTLE?\n")
