@@ -1,3 +1,5 @@
+from pprint import pprint
+
 
 class Gameboard:
     """
@@ -15,6 +17,11 @@ class Gameboard:
         self.board = [["." for x in range(5)] for y in range(5)]
         self.guesses = []
         self.shiploc = []
+    
+    # This code is copied from Code Institute Portfolio Project Scope video
+    def print(self):
+        for row in self.board:
+            print(" ".join(row))
 
 
 def new_game():
@@ -23,13 +30,18 @@ def new_game():
     it displays the boards,
     and will initialize the start of the game.
     """
-
-    print("WELCOME! ARE YOU READY TO BATTLE?\n")
+    
     player_name = input("Enter your name please: \n")
     print("-" * 30)
     print(f"Hi, {player_name}\n")
     print("The board grid is 5*5 and the number of ships is 4!\n")
     print("Be aware, the top left corner is row: 0, col: 0\n")
+
+    players_board = Gameboard(player_name, btype="Player")
+    pprint(players_board.print())
+
+
+print("WELCOME! ARE YOU READY TO BATTLE?\n")
 
 
 new_game()
