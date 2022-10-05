@@ -18,7 +18,7 @@ class Gameboard:
         self.guesses = []
         self.shiploc = []
     
-    # This code is copied from Code Institute Portfolio Project Scope video
+    # This function is copied from Code Institute Portfolio Project Scope video
     def print(self):
         for row in self.board:
             print(" ".join(row))
@@ -56,6 +56,14 @@ def start_game(player_name, players_board, computer_board):
     print("-" * 30)
     print("This is the computer's board:")
     print(computer_board.print())
+
+    while True:
+        try:
+            guess_row = int(input("Guess a row: \n"))
+            guess_column = int(input("Guess a column: \n"))
+        except ValueError as guess:
+            print(f"You did not enter a number, please try again")    
+    validate_input(guess_row,guess_column)
 
 
 def new_game():
