@@ -37,10 +37,26 @@ class Gameboard:
 
 
 def populate_board(board):
+    """
+    Creates 2 random numbers to create coordinate.
+    Each coordinate is added to shiplocation list of instance.
+    """
     x_cord = randint(0, 4)
     y_cord = randint(0, 4)
     board.add_ship(x_cord, y_cord)
    
+
+def start_game(player_name, players_board, computer_board):
+    """
+    This starts the new game.
+    It displays the boards and let the player input its guesses
+    """
+    print(f"{player_name} this is your board:\n")
+    print(players_board.print())
+    print("-" * 30)
+    print("This is the computer's board:")
+    print(computer_board.print())
+
 
 def new_game():
     """
@@ -61,8 +77,9 @@ def new_game():
     for i in range(4):
         populate_board(players_board)
         populate_board(computer_board)
-    print(players_board.print())
     print(computer_board.shiploc)
+    print(players_board.shiploc)
+    start_game(player_name, players_board, computer_board)
 
 
 print("WELCOME! ARE YOU READY TO BATTLE?\n")
