@@ -1,4 +1,4 @@
-from pprint import pprint
+from random import randint
 
 
 class Gameboard:
@@ -24,6 +24,14 @@ class Gameboard:
             print(" ".join(row))
 
 
+def populate_board(players_board):
+    new_ship_loc = []
+    for i in range(2):
+        cord = randint(0, 4)
+        new_ship_loc.append(cord)
+    players_board.shiploc.append(new_ship_loc)
+
+
 def new_game():
     """
     Starts a new game. It start by resetting the scores, 
@@ -38,7 +46,10 @@ def new_game():
     print("Be aware, the top left corner is row: 0, col: 0\n")
 
     players_board = Gameboard(player_name, btype="Player")
-    pprint(players_board.print())
+    
+    for i in range(4):
+        populate_board(players_board)
+    print(players_board.shiploc)
 
 
 print("WELCOME! ARE YOU READY TO BATTLE?\n")
