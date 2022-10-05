@@ -44,7 +44,12 @@ def populate_board(board):
     x_cord = randint(0, 4)
     y_cord = randint(0, 4)
     board.add_ship(x_cord, y_cord)
-   
+
+
+def validate_input(guess_row, guess_column):
+    print(guess_row)
+    print(guess_column)
+
 
 def start_game(player_name, players_board, computer_board):
     """
@@ -59,11 +64,12 @@ def start_game(player_name, players_board, computer_board):
 
     while True:
         try:
-            guess_row = int(input("Guess a row: \n"))
-            guess_column = int(input("Guess a column: \n"))
-        except ValueError as guess:
-            print(f"You did not enter a number, please try again")    
-    validate_input(guess_row,guess_column)
+            guess_row = int(input("Guess a row between 0-4: \n"))
+            guess_column = int(input("Guess a column between 0-4: \n"))
+        except ValueError:
+            print("You did not enter a number, please try again\n")    
+    
+    validate_input(guess_row, guess_column)
 
 
 def new_game():
