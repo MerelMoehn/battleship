@@ -46,10 +46,13 @@ def new_game():
     print("Be aware, the top left corner is row: 0, col: 0\n")
 
     players_board = Gameboard(player_name, btype="Player")
+    computer_board = Gameboard("Computer", btype="Computer")
     
     for i in range(4):
         populate_board(players_board)
+        populate_board(computer_board)
     print(players_board.shiploc)
+    print(computer_board.shiploc)
 
 
 print("WELCOME! ARE YOU READY TO BATTLE?\n")
