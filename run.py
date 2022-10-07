@@ -46,9 +46,11 @@ def populate_board(board):
     board.add_ship(x_cord, y_cord)
 
 
-def validate_input(guess_row, guess_column):
-    print(guess_row)
-    print(guess_column)
+def validate_input(user_input):
+    if user_input != range(0-4):
+        print("This is out of range")
+    else:
+        return False
 
 
 def start_game(player_name, players_board, computer_board):
@@ -64,19 +66,31 @@ def start_game(player_name, players_board, computer_board):
 
     while True:
         try:
-            guess_row = int(input("Guess a row between 0-4: \n"))
-            guess_column = int(input("Guess a column between 0-4: \n"))
+            guess_row = int(input("Guess a row in range 0-4:\n"))
         except ValueError:
-            print("You did not enter a number, please try again\n")    
+            print("That's not a number, try again")
+        else:
+            if guess_row in range(0, 4):
+                break
+            else:
+                print("Out of range. Try again")
     
-    validate_input(guess_row, guess_column)
+    while True:
+        try:
+            guess_column = int(input("Guess a column between 0-4:\n"))
+        except ValueError:
+            print("That's not a number, try again")
+        else:
+            if guess_column in range(0, 4):
+                break
+            else:
+                print("Out of range. Try again")
 
 
 def new_game():
     """
-    Starts a new game. It start by resetting the scores, 
-    it displays the boards,
-    and will initialize the start of the game.
+    Starts a new game. It start by resetting the scores,
+    it displays the boards, and will initialize the start of the game.
     """
     
     player_name = input("Enter your name please: \n")
