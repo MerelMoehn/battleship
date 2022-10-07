@@ -18,7 +18,7 @@ class Gameboard:
         self.guesses = []
         self.shiploc = []
 
-    # This function is copied from Code Institute Portfolio Project Scope video
+    # Function is based on Code Institute Portfolio Project Scope video
     def print(self):
         """
         This function displays the board to the player
@@ -100,10 +100,10 @@ def start_game(player_name, players_board, computer_board):
     """
     while True:
         print(f"{player_name} this is your board:\n")
-        print(players_board.print())
+        players_board.print()
         print("-" * 30)
         print("This is the computer's board:")
-        print(computer_board.print())
+        computer_board.print()
 
         try:
             while True:
