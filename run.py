@@ -43,7 +43,6 @@ class Gameboard:
         Stores guesses and compares to ship location
         """
 
-        self.guesses.append((x_cord, y_cord))
         self.board[x_cord][y_cord] = "X"
 
         if (x_cord, y_cord) in self.shiploc:
@@ -51,8 +50,6 @@ class Gameboard:
             print("It's a hit!")
         else:
             print("Ai, missed!")
-        
-        print(self.guesses)
 
 
 def populate_board(board):
@@ -65,7 +62,7 @@ def populate_board(board):
     board.add_ship(x_cord, y_cord)
 
 
-def validate_cord(players_board, x_cord, y_cord):
+def valid_cord(players_board, computer_board, x_cord, y_cord):
     """
     Validates the coordinates against earlier guesses.
     If validation is succesful it appends guess, to guesses
@@ -73,11 +70,12 @@ def validate_cord(players_board, x_cord, y_cord):
     if (x_cord, y_cord) in players_board.guesses:
         print("You already guessed this location, try another")
     else:
-        players_board.guess(x_cord, y_cord)
+        players_board.guesses.append((x_cord, y_cord))
+        computer_board.guess(x_cord, y_cord)
     print(players_board.guesses)
 
 
-def computer_guess(computer_board):
+def computer_guess(computer_board, players_board):
     """
     Creates a random guess for the computer
     """
@@ -88,8 +86,11 @@ def computer_guess(computer_board):
             print("Computer made this guess already")
             continue
         else:
-            computer_board.guess(x_cord, y_cord)
+            computer_board.guesses.append((x_cord, y_cord))
+            players_board.guess(x_cord, y_cord)
+            print(computer_board.guesses)
             return False
+
 
 
 def start_game(player_name, players_board, computer_board):
@@ -97,36 +98,39 @@ def start_game(player_name, players_board, computer_board):
     This starts the new game.
     It displays the boards and let the player input its guesses
     """
-    print(f"{player_name} this is your board:\n")
-    print(players_board.print())
-    print("-" * 30)
-    print("This is the computer's board:")
-    print(computer_board.print())
-
     while True:
-        try:
-            guess_row = int(input("Guess a row in range 0-4:\n"))
-        except ValueError:
-            print("That's not a number, try again")
-        else:
-            if guess_row in range(0, 5):
-                break
-            else:
-                print("Out of range. Try again")
+        print(f"{player_name} this is your board:\n")
+        print(players_board.print())
+        print("-" * 30)
+        print("This is the computer's board:")
+        print(computer_board.print())
 
-    while True:
         try:
-            guess_column = int(input("Guess a column between 0-4:\n"))
-        except ValueError:
-            print("That's not a number, try again")
-        else:
-            if guess_column in range(0, 5):
-                break
-            else:
-                print("Out of range. Try again")
+            while True:
+                try:
+                    guess_row = int(input("Guess a row in range 0-4:\n"))
+                except ValueError:
+                    print("That's not a number, try again")
+                else:
+                    if guess_row in range(0, 5):
+                        break
+                    else:
+                        print("Out of range. Try again")
 
-    validate_cord(players_board, guess_row, guess_column)
-    computer_guess(computer_board)
+            while True:
+                try:
+                    guess_column = int(input("Guess a column between 0-4:\n"))
+                except ValueError:
+                    print("That's not a number, try again")
+                else:
+                    if guess_column in range(0, 5):
+                        break
+                    else:
+                        print("Out of range. Try again")
+            valid_cord(players_board, computer_board, guess_row, guess_column)
+            computer_guess(computer_board, players_board)
+        except ValueError:
+            print("You already made this guess, try again")
 
 
 def new_game():
@@ -147,8 +151,8 @@ def new_game():
     for i in range(4):
         populate_board(players_board)
         populate_board(computer_board)
-    print(computer_board.shiploc)
-    print(players_board.shiploc)
+    print(f"Computers loc: {computer_board.shiploc}")
+    print(f"Players board: {players_board.shiploc}")
     start_game(player_name, players_board, computer_board)
 
 
