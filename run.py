@@ -73,7 +73,8 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
     else:
         players_board.guesses.append((x_cord, y_cord))
         computer_board.guess(x_cord, y_cord)
-    print(players_board.guesses)
+        print(players_board.guesses)
+        return False
 
 
 def computer_guess(computer_board, players_board):
@@ -98,13 +99,14 @@ def start_game(player_name, players_board, computer_board):
     This starts the new game.
     It displays the boards and let the player input its guesses
     """
+    
+    print(f"{player_name} this is your board:\n")
+    players_board.print()
+    print("-" * 30)
+    print("This is the computer's board:")
+    computer_board.print()
+    
     while True:
-        print(f"{player_name} this is your board:\n")
-        players_board.print()
-        print("-" * 30)
-        print("This is the computer's board:")
-        computer_board.print()
-
         try:
             while True:
                 try:
@@ -130,7 +132,9 @@ def start_game(player_name, players_board, computer_board):
             valid_cord(players_board, computer_board, guess_row, guess_column)
         except ValueError:
             print("You already made this guess, try again")
-            computer_guess(computer_board, players_board)
+        computer_guess(computer_board, players_board)
+        players_board.print()
+        computer_board.print()
 
 
 def new_game():
