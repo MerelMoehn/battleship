@@ -50,7 +50,9 @@ class Gameboard:
             self.board[x_cord][y_cord] = "H"
             print("It's a hit!")
         else:
-            print("Ai, you missed!")
+            print("Ai, missed!")
+        
+        print(self.guesses)
 
 
 def populate_board(board):
@@ -64,11 +66,30 @@ def populate_board(board):
 
 
 def validate_cord(players_board, x_cord, y_cord):
+    """
+    Validates the coordinates against earlier guesses.
+    If validation is succesful it appends guess, to guesses
+    """
     if (x_cord, y_cord) in players_board.guesses:
         print("You already guessed this location, try another")
     else:
         players_board.guess(x_cord, y_cord)
     print(players_board.guesses)
+
+
+def computer_guess(computer_board):
+    """
+    Creates a random guess for the computer
+    """
+    while True:
+        x_cord = randint(0, 4)
+        y_cord = randint(0, 4)
+        if (x_cord, y_cord) in computer_board.guesses:
+            print("Computer made this guess already")
+            continue
+        else:
+            computer_board.guess(x_cord, y_cord)
+            return False
 
 
 def start_game(player_name, players_board, computer_board):
@@ -88,7 +109,7 @@ def start_game(player_name, players_board, computer_board):
         except ValueError:
             print("That's not a number, try again")
         else:
-            if guess_row in range(0, 4):
+            if guess_row in range(0, 5):
                 break
             else:
                 print("Out of range. Try again")
@@ -99,12 +120,13 @@ def start_game(player_name, players_board, computer_board):
         except ValueError:
             print("That's not a number, try again")
         else:
-            if guess_column in range(0, 4):
+            if guess_column in range(0, 5):
                 break
             else:
                 print("Out of range. Try again")
 
     validate_cord(players_board, guess_row, guess_column)
+    computer_guess(computer_board)
 
 
 def new_game():
