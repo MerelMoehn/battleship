@@ -69,6 +69,7 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
     """
     if (x_cord, y_cord) in players_board.guesses:
         print("You already guessed this location, try another")
+        return True
     else:
         players_board.guesses.append((x_cord, y_cord))
         computer_board.guess(x_cord, y_cord)
@@ -77,20 +78,19 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
 
 def computer_guess(computer_board, players_board):
     """
-    Creates a random guess for the computer
+    Creates a random guess for the computer,
+    and appends it to the computer's guesses
     """
     while True:
         x_cord = randint(0, 4)
         y_cord = randint(0, 4)
         if (x_cord, y_cord) in computer_board.guesses:
-            print("Computer made this guess already")
             continue
         else:
             computer_board.guesses.append((x_cord, y_cord))
             players_board.guess(x_cord, y_cord)
             print(computer_board.guesses)
             return False
-
 
 
 def start_game(player_name, players_board, computer_board):
@@ -128,9 +128,9 @@ def start_game(player_name, players_board, computer_board):
                     else:
                         print("Out of range. Try again")
             valid_cord(players_board, computer_board, guess_row, guess_column)
-            computer_guess(computer_board, players_board)
         except ValueError:
             print("You already made this guess, try again")
+            computer_guess(computer_board, players_board)
 
 
 def new_game():
