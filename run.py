@@ -4,9 +4,9 @@ from random import randint
 class Gameboard:
     """
     This class includes the main board, and two instances
-    of game boards for both the player and the computer. 
-    It includes the board size, the players name, type of board, 
-    and the number of ships. It includes the methods for adding ships, 
+    of game boards for both the player and the computer.
+    It includes the board size, the players name, type of board,
+    and the number of ships. It includes the methods for adding ships,
     guesses and printing the board to the user.
     """
 
@@ -17,12 +17,15 @@ class Gameboard:
         self.board = [["." for x in range(5)] for y in range(5)]
         self.guesses = []
         self.shiploc = []
-    
+
     # This function is copied from Code Institute Portfolio Project Scope video
     def print(self):
+        """
+        This function displays the board to the player
+        """
         for row in self.board:
             print(" ".join(row))
-    
+
     def add_ship(self, x_cord, y_cord):
         """
         Adds ships to shiplocations list and shows
@@ -34,6 +37,20 @@ class Gameboard:
             self.board[x_cord][y_cord] = "@"
         else:
             self.shiploc.append((x_cord, y_cord))
+ 
+    def guess(self, x_cord, y_cord):
+        """
+        Stores guesses and compares to ship location
+        """
+
+        self.guesses.append((x_cord, y_cord))
+        self.board[x_cord][y_cord] = "X"
+
+        if (x_cord, y_cord) in self.shiploc:
+            self.board[x_cord][y_cord] = "H"
+            print("It's a hit!")
+        else:
+            print("Ai, you missed!")
 
 
 def populate_board(board):
@@ -46,11 +63,12 @@ def populate_board(board):
     board.add_ship(x_cord, y_cord)
 
 
-def validate_input(user_input):
-    if user_input != range(0-4):
-        print("This is out of range")
+def validate_cord(players_board, x_cord, y_cord):
+    if (x_cord, y_cord) in players_board.guesses:
+        print("You already guessed this location, try another")
     else:
-        return False
+        players_board.guess(x_cord, y_cord)
+    print(players_board.guesses)
 
 
 def start_game(player_name, players_board, computer_board):
@@ -74,7 +92,7 @@ def start_game(player_name, players_board, computer_board):
                 break
             else:
                 print("Out of range. Try again")
-    
+
     while True:
         try:
             guess_column = int(input("Guess a column between 0-4:\n"))
@@ -86,13 +104,15 @@ def start_game(player_name, players_board, computer_board):
             else:
                 print("Out of range. Try again")
 
+    validate_cord(players_board, guess_row, guess_column)
+
 
 def new_game():
     """
     Starts a new game. It start by resetting the scores,
     it displays the boards, and will initialize the start of the game.
     """
-    
+
     player_name = input("Enter your name please: \n")
     print("-" * 30)
     print(f"Hi, {player_name}\n")
@@ -101,7 +121,7 @@ def new_game():
 
     players_board = Gameboard(player_name, type="Player")
     computer_board = Gameboard("Computer", type="Computer")
-    
+
     for i in range(4):
         populate_board(players_board)
         populate_board(computer_board)
