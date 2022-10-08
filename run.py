@@ -67,9 +67,13 @@ def populate_board(board):
     Creates 2 random numbers to create coordinate.
     Each coordinate is added to shiplocation list of instance.
     """
-    x_cord = randint(0, 4)
-    y_cord = randint(0, 4)
-    board.add_ship(x_cord, y_cord)
+
+    while len(board.shiploc) < 4:
+        x_cord = randint(0, 4)
+        y_cord = randint(0, 4)
+        if (x_cord, y_cord) in board.shiploc:
+            continue
+        board.add_ship(x_cord, y_cord)
 
 
 def valid_cord(players_board, computer_board, x_cord, y_cord):
@@ -194,9 +198,8 @@ def new_game():
     players_board = Gameboard(player_name, type="Player")
     computer_board = Gameboard("Computer", type="Computer")
 
-    for i in range(4):
-        populate_board(players_board)
-        populate_board(computer_board)
+    populate_board(players_board)
+    populate_board(computer_board)
     print(f"Computers loc: {computer_board.shiploc}")
     print(f"Players board: {players_board.shiploc}")
     start_game(player_name, players_board, computer_board)
