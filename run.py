@@ -1,5 +1,7 @@
 from random import randint
 
+scores = {"Player": 0, "Computer": 0}
+
 
 class Gameboard:
     """
@@ -17,6 +19,7 @@ class Gameboard:
         self.board = [["." for x in range(5)] for y in range(5)]
         self.guesses = []
         self.shiploc = []
+        self.score = 0
 
     # Function is based on Code Institute Portfolio Project Scope video
     def print(self):
@@ -48,8 +51,18 @@ class Gameboard:
         if (x_cord, y_cord) in self.shiploc:
             self.board[x_cord][y_cord] = "H"
             print("It's a hit!")
+            keep_score(self.type)
         else:
             print("Ai, missed!")
+
+
+def keep_score(type):
+    if type == "Computer":
+        scores["Player"] += 1
+    elif type == "Player":
+        scores["Computer"] += 1
+    else:
+        print("No score can be added")
 
 
 def populate_board(board):
@@ -94,18 +107,24 @@ def computer_guess(computer_board, players_board):
             return False
 
 
-def start_game(player_name, players_board, computer_board):
+def print_board(player_name, players_board, computer_board):
     """
-    This starts the new game.
-    It displays the boards and let the player input its guesses
+    Prints the current board status of both computer and player.
     """
-    
     print(f"{player_name} this is your board:\n")
     players_board.print()
     print("-" * 30)
     print("This is the computer's board:")
     computer_board.print()
-    
+
+
+def start_game(player_name, players_board, computer_board):
+    """
+    This starts the new game.
+    It displays the boards and let the player input its guesses
+    """
+    print_board(player_name, players_board, computer_board)
+
     while True:
         try:
             while True:
@@ -133,8 +152,16 @@ def start_game(player_name, players_board, computer_board):
         except ValueError:
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
-        players_board.print()
-        computer_board.print()
+        print_board(player_name, players_board, computer_board)
+        print(scores)
+        if (scores["Computer"] == 4):
+            print("GAME OVER! The computer won")
+            break
+        elif (scores["Player"] == 4):
+            print(f"YOU WON! Congratulations {player_name}!")
+            break
+        else:
+            continue
 
 
 def new_game():
