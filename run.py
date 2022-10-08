@@ -148,6 +148,11 @@ def show_board(player_name, players_board, computer_board):
 
 
 def reset_game():
+    """
+    Asks the user if he wants to reset the game or not.
+    If user wants to resets it will reset the score and,
+    restart the game.
+    """
 
     while True:
         try:
