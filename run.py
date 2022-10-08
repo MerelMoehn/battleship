@@ -1,4 +1,5 @@
 from random import randint
+import os
 
 scores = {"Player": 0, "Computer": 0}
 
@@ -40,7 +41,7 @@ class Gameboard:
             self.board[x_cord][y_cord] = "@"
         else:
             self.shiploc.append((x_cord, y_cord))
- 
+
     def guess(self, x_cord, y_cord):
         """
         Stores guesses and compares to ship location
@@ -50,13 +51,13 @@ class Gameboard:
 
         if (x_cord, y_cord) in self.shiploc:
             self.board[x_cord][y_cord] = "H"
-            if (self.type == "Computer"):
+            if self.type == "Computer":
                 print("Well done, It's a hit!")
             else:
                 print("The computer hit one of your ships!")
             keep_score(self.type)
         else:
-            if (self.type == "Computer"):
+            if self.type == "Computer":
                 print("You missed!")
             else:
                 print("Lucky you, the computer missed!")
@@ -122,10 +123,10 @@ def calculate_winner(player_name):
     Calculates whether there is a winner or not.
     """
     print(scores)
-    if (scores["Computer"] == 4):
+    if scores["Computer"] == 4:
         print("GAME OVER! The computer won")
         return False
-    elif (scores["Player"] == 4):
+    elif scores["Player"] == 4:
         print(f"YOU WON! Congratulations {player_name}!")
         return False
     else:
@@ -173,6 +174,7 @@ def start_game(player_name, players_board, computer_board):
                         break
                     else:
                         print("Out of range. Try again")
+            os.system("clear")
             if valid_cord(players_board, computer_board, guess_row, guess_column):
                 continue
         except ValueError:
