@@ -42,9 +42,15 @@ After the player wins or loses, he can choose to reset the game.
 * Name submit: this functionality gives the user the option to submit his or her name. This will personalize the page and game. The input is required. The user can also submit the name by clicking 'enter'.
 
 
-
 ## Data model
+In this project I use a Board class model. There are two instances of the Board class model: the Players Board and the Computer Board. 
 
+The Board class model stores the type of the board (player or computer), number of ships, the guesses that are made, and the ship locations.
+
+The class also includes several methods:
+* The print method: this method prints the board. The code for this method is based on the CodeInstitute scope model project.
+* The add ship method: this methods adds a ship to the board by taking the random generated coordinates as parameters.
+* The guess_handling method: this method checks whether the guess results in a HIT or in a MISS, and calls the keep_score function in case of a HIT.
 
 
 ## Testing

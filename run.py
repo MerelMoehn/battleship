@@ -13,14 +13,12 @@ class Gameboard:
     guesses and printing the board to the user.
     """
 
-    def __init__(self, name, ptype):
-        self.name = name
+    def __init__(self, ptype):
         self.ptype = ptype
         self.num_ships = 4
         self.board = [["." for x in range(5)] for y in range(5)]
         self.guesses = []
         self.shiploc = []
-        self.score = 0
 
     # Function is based on Code Institute Portfolio Project Scope video
     def print(self):
@@ -43,7 +41,7 @@ class Gameboard:
         else:
             self.shiploc.append((x_cord, y_cord))
 
-    def guess(self, x_cord, y_cord):
+    def guess_handling(self, x_cord, y_cord):
         """
         Stores guesses and compares to ship location
         """
@@ -88,7 +86,7 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
         return True
     else:
         players_board.guesses.append((x_cord, y_cord))
-        computer_board.guess(x_cord, y_cord)
+        computer_board.guess_handling(x_cord, y_cord)
         print(players_board.guesses)
         return False
 
@@ -105,7 +103,7 @@ def computer_guess(computer_board, players_board):
             continue
         else:
             computer_board.guesses.append((x_cord, y_cord))
-            players_board.guess(x_cord, y_cord)
+            players_board.guess_handling(x_cord, y_cord)
             print(computer_board.guesses)
             return False
 
@@ -234,8 +232,8 @@ def new_game():
     print("If you hit, you will see an 'H' on the computer's board")
     print("If you miss, you will see an 'X' on the board")
 
-    players_board = Gameboard(player_name, ptype="Player")
-    computer_board = Gameboard("Computer", ptype="Computer")
+    players_board = Gameboard(ptype="Player")
+    computer_board = Gameboard(ptype="Computer")
 
     populate_board(players_board)
     populate_board(computer_board)
