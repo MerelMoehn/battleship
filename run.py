@@ -50,10 +50,16 @@ class Gameboard:
 
         if (x_cord, y_cord) in self.shiploc:
             self.board[x_cord][y_cord] = "H"
-            print("It's a hit!")
+            if (self.type == "Computer"):
+                print("Well done, It's a hit!")
+            else:
+                print("The computer hit one of your ships!")
             keep_score(self.type)
         else:
-            print("Ai, missed!")
+            if (self.type == "Computer"):
+                print("You missed!")
+            else:
+                print("Lucky you, the computer missed!")
 
 
 def populate_board(board):
