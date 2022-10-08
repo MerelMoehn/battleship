@@ -56,15 +56,6 @@ class Gameboard:
             print("Ai, missed!")
 
 
-def keep_score(type):
-    if type == "Computer":
-        scores["Player"] += 1
-    elif type == "Player":
-        scores["Computer"] += 1
-    else:
-        print("No score can be added")
-
-
 def populate_board(board):
     """
     Creates 2 random numbers to create coordinate.
@@ -105,6 +96,30 @@ def computer_guess(computer_board, players_board):
             players_board.guess(x_cord, y_cord)
             print(computer_board.guesses)
             return False
+
+
+def keep_score(type):
+    if type == "Computer":
+        scores["Player"] += 1
+    elif type == "Player":
+        scores["Computer"] += 1
+    else:
+        print("No score can be added")
+
+
+def calculate_winner(player_name):
+    """
+    Calculates whether there is a winner or not.
+    """
+    print(scores)
+    if (scores["Computer"] == 4):
+        print("GAME OVER! The computer won")
+        return False
+    elif (scores["Player"] == 4):
+        print(f"YOU WON! Congratulations {player_name}!")
+        return False
+    else:
+        return True
 
 
 def print_board(player_name, players_board, computer_board):
@@ -153,15 +168,8 @@ def start_game(player_name, players_board, computer_board):
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
         print_board(player_name, players_board, computer_board)
-        print(scores)
-        if (scores["Computer"] == 4):
-            print("GAME OVER! The computer won")
+        if not calculate_winner(player_name):
             break
-        elif (scores["Player"] == 4):
-            print(f"YOU WON! Congratulations {player_name}!")
-            break
-        else:
-            continue
 
 
 def new_game():
