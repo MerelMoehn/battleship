@@ -15,7 +15,7 @@ class Gameboard:
 
     def __init__(self, name, ptype):
         self.name = name
-        self.ptype = type
+        self.ptype = ptype
         self.num_ships = 4
         self.board = [["." for x in range(5)] for y in range(5)]
         self.guesses = []
@@ -136,7 +136,7 @@ def calculate_winner(player_name):
         return True
 
 
-def print_board(player_name, players_board, computer_board):
+def show_board(player_name, players_board, computer_board):
     """
     Prints the current board status of both computer and player.
     """
@@ -147,12 +147,33 @@ def print_board(player_name, players_board, computer_board):
     computer_board.print()
 
 
+def reset_game():
+
+    while True:
+        try:
+            reset_input = input("Do you want to reset the game? (Yes or No)\n")
+            if reset_input == "Yes" or reset_input == "No":
+                break
+            else:
+                raise ValueError()
+        except ValueError():
+            print("Please enter Yes/No")
+    if reset_input == "Yes":
+        scores["Player"] = 0
+        scores["Computer"] = 0
+        os.system("clear")
+        new_game()
+    else:
+        os.system("clear")
+        print("Alright, goodbye!")
+
+
 def start_game(player_name, players_board, computer_board):
     """
     This starts the new game.
     It displays the boards and let the player input its guesses
     """
-    print_board(player_name, players_board, computer_board)
+    show_board(player_name, players_board, computer_board)
 
     while True:
         try:
@@ -184,11 +205,14 @@ def start_game(player_name, players_board, computer_board):
         except ValueError:
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
+        print("-" * 30)
         print(f"{player_name}'s hit rate: {scores['Player']},\
              the computer's hit rate: {scores['Computer']} ")
-        print_board(player_name, players_board, computer_board)
+        print("-" * 30)
+        show_board(player_name, players_board, computer_board)
         if not calculate_winner(player_name):
             break
+    reset_game()
 
 
 def new_game():
