@@ -13,9 +13,9 @@ class Gameboard:
     guesses and printing the board to the user.
     """
 
-    def __init__(self, name, type):
+    def __init__(self, name, ptype):
         self.name = name
-        self.type = type
+        self.ptype = type
         self.num_ships = 4
         self.board = [["." for x in range(5)] for y in range(5)]
         self.guesses = []
@@ -30,13 +30,14 @@ class Gameboard:
         for row in self.board:
             print(" ".join(row))
 
+    # Function is partly based on Code Institute Portfolio Project Scope video
     def add_ship(self, x_cord, y_cord):
         """
         Adds ships to shiplocations list and shows
         location of ship on playersboard.
         """
 
-        if self.type == "Player":
+        if self.ptype == "Player":
             self.shiploc.append((x_cord, y_cord))
             self.board[x_cord][y_cord] = "@"
         else:
@@ -51,13 +52,13 @@ class Gameboard:
 
         if (x_cord, y_cord) in self.shiploc:
             self.board[x_cord][y_cord] = "H"
-            if self.type == "Computer":
+            if self.ptype == "Computer":
                 print("Well done, It's a hit!")
             else:
                 print("The computer hit one of your ships!")
-            keep_score(self.type)
+            keep_score(self.ptype)
         else:
-            if self.type == "Computer":
+            if self.ptype == "Computer":
                 print("You missed!")
             else:
                 print("Lucky you, the computer missed!")
@@ -109,10 +110,13 @@ def computer_guess(computer_board, players_board):
             return False
 
 
-def keep_score(type):
-    if type == "Computer":
+def keep_score(ptype):
+    """
+    Adds a point to the score if Player or Computer hit's
+    """
+    if ptype == "Computer":
         scores["Player"] += 1
-    elif type == "Player":
+    elif ptype == "Player":
         scores["Computer"] += 1
     else:
         print("No score can be added")
@@ -122,7 +126,6 @@ def calculate_winner(player_name):
     """
     Calculates whether there is a winner or not.
     """
-    print(scores)
     if scores["Computer"] == 4:
         print("GAME OVER! The computer won")
         return False
@@ -175,11 +178,14 @@ def start_game(player_name, players_board, computer_board):
                     else:
                         print("Out of range. Try again")
             os.system("clear")
-            if valid_cord(players_board, computer_board, guess_row, guess_column):
+            if valid_cord(players_board, computer_board,
+                          guess_row, guess_column):
                 continue
         except ValueError:
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
+        print(f"{player_name}'s hit rate: {scores['Player']},\
+             the computer's hit rate: {scores['Computer']} ")
         print_board(player_name, players_board, computer_board)
         if not calculate_winner(player_name):
             break
@@ -196,9 +202,11 @@ def new_game():
     print(f"Hi, {player_name}\n")
     print("The board grid is 5*5 and the number of ships is 4!\n")
     print("Be aware, the top left corner is row: 0, col: 0\n")
+    print("If you hit, you will see an 'H' on the computer's board")
+    print("If you miss, you will see an 'X' on the board")
 
-    players_board = Gameboard(player_name, type="Player")
-    computer_board = Gameboard("Computer", type="Computer")
+    players_board = Gameboard(player_name, ptype="Player")
+    computer_board = Gameboard("Computer", ptype="Computer")
 
     populate_board(players_board)
     populate_board(computer_board)
