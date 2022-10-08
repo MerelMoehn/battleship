@@ -163,7 +163,8 @@ def start_game(player_name, players_board, computer_board):
                         break
                     else:
                         print("Out of range. Try again")
-            valid_cord(players_board, computer_board, guess_row, guess_column)
+            if valid_cord(players_board, computer_board, guess_row, guess_column):
+                continue
         except ValueError:
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
