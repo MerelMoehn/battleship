@@ -35,6 +35,7 @@ The player wins if the sinks the 4 ships of the computer before the computer sin
 After the player wins or loses, he can choose to reset the game.
 
 **Features**
+
 ![Image of user input](./assets/images/userinput.png)
 * User input: the user can insert his guess for a row and column.
 
@@ -47,6 +48,7 @@ After the player wins or loses, he can choose to reset the game.
 ![Image of boards](./assets/images/displayboard_hitsandmisses.png)
 * Boards: both the player's board and the computer's board are displayed. An 'H" represents a HIT, an X represents a MISS. The location of the player's ships are represented by an @. The computer's ships are hidden.
 
+* Result: after 4 ships are sunk by either the player or the computer, the game will display a result message.
 
 ## Data model
 In this project I use a Board class model. There are two instances of the Board class model: the Players Board and the Computer Board. 

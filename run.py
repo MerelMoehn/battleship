@@ -26,7 +26,7 @@ class Gameboard:
         This function displays the board to the player
         """
         for row in self.board:
-            print(" ".join(row))
+            print(" " + " ".join(row))
 
     # Function is partly based on Code Institute Portfolio Project Scope video
     def add_ship(self, x_cord, y_cord):
@@ -138,9 +138,10 @@ def show_board(player_name, players_board, computer_board):
     """
     print(f" {player_name} this is your board:\n")
     players_board.print()
-    print("-" * 30)
+    print(" " + "-" * 30)
     print(" This is the computer's board:\n")
     computer_board.print()
+    print(" " + "-" * 30)
 
 
 def reset_game():
@@ -206,10 +207,10 @@ def start_game(player_name, players_board, computer_board):
         except ValueError:
             print(" You already made this guess, try again")
         computer_guess(computer_board, players_board)
-        print("-" * 30)
+        print(" " + "-" * 30)
         print(f" {player_name}'s hit rate: {scores['Player']}\n"
               f" Computer's hit rate: {scores['Computer']} ")
-        print("-" * 30)
+        print(" " + "-" * 30)
         show_board(player_name, players_board, computer_board)
         if not calculate_winner(player_name):
             break
@@ -223,7 +224,7 @@ def new_game():
     """
 
     player_name = input(" Enter your name please: \n")
-    print("-" * 30)
+    print(" " + "-" * 30)
     print(f" Hi, {player_name}\n")
     print(" The board grid is 5*5 and the number of ships is 4!\n")
     print(" Be aware, the top left corner is row: 0, col: 0\n")
