@@ -72,6 +72,7 @@ No errors were red underlined and no errors were shown in the PROBLEM tab beside
 * Break while True loop 1: there was a bug that did not continue the while True loop after the user inserted a number outside of the scope. This was fixed by adding a return value and using that to break the while loop.
 * Break while True loop 2: there was a bug that kept the game running even though there was a winner. This was fixed by using the return value in an if statement and letting the loop break after the return was False.
 * Reset game input not accepted: there was a bug when the user inserted 'Yes' for resetting the game, the system did not recognize the 'Yes' correctly. This was fixed by using a try and except statement instead of an if statement.
+* System clear: console was cleared at the wrong moment. By putting it before the guess_handling it now shows the result of the player's guess.
 
 **Unsolved bugs**
 As far as I could find there are no outstanding bugs.
