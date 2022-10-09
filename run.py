@@ -1,5 +1,4 @@
 from random import randint
-from colorama import Fore, Back, Style
 import os
 
 scores = {"Player": 0, "Computer": 0}
@@ -27,7 +26,7 @@ class Gameboard:
         This function displays the board to the player
         """
         for row in self.board:
-            print(Fore.WHITE + " ".join(row))
+            print(" ".join(row))
 
     # Function is partly based on Code Institute Portfolio Project Scope video
     def add_ship(self, x_cord, y_cord):
@@ -51,15 +50,15 @@ class Gameboard:
         if (x_cord, y_cord) in self.shiploc:
             self.board[x_cord][y_cord] = "H"
             if self.ptype == "Computer":
-                print(Fore.GREEN + "Well done, It's a hit!")
+                print("Well done, It's a hit!")
             else:
-                print(Fore.RED + "The computer hit one of your ships!")
+                print("The computer hit one of your ships!")
             keep_score(self.ptype)
         else:
             if self.ptype == "Computer":
-                print(Fore.RED + "You missed!")
+                print("You missed!")
             else:
-                print(Fore.GREEN + "Lucky you, the computer missed!")
+                print("Lucky you, the computer missed!")
 
 
 def populate_board(board):
@@ -126,10 +125,10 @@ def calculate_winner(player_name):
     Calculates whether there is a winner or not.
     """
     if scores["Computer"] == 4:
-        print(Fore.RED + "GAME OVER! The computer won")
+        print("GAME OVER! The computer won")
         return False
     elif scores["Player"] == 4:
-        print(Fore.GREEN + f"YOU WON! Congratulations {player_name}!")
+        print(f"YOU WON! Congratulations {player_name}!")
         return False
     else:
         return True
@@ -139,10 +138,10 @@ def show_board(player_name, players_board, computer_board):
     """
     Prints the current board status of both computer and player.
     """
-    print(Fore.WHITE + f"{player_name} this is your board:\n")
+    print(f"{player_name} this is your board:\n")
     players_board.print()
     print("-" * 30)
-    print(Fore.WHITE + "This is the computer's board:\n")
+    print("This is the computer's board:\n")
     computer_board.print()
 
 
@@ -155,7 +154,7 @@ def reset_game():
 
     while True:
         try:
-            reset_input = input(Fore.WHITE + "Do you want to reset the game?"
+            reset_input = input("Do you want to reset the game?"
                                 "(Yes or No)\n")
             if reset_input == "Yes" or reset_input == "No":
                 break
@@ -210,7 +209,7 @@ def start_game(player_name, players_board, computer_board):
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
         print("-" * 30)
-        print(Fore.WHITE + f"{player_name}'s hit rate: {scores['Player']}\n"
+        print(f"{player_name}'s hit rate: {scores['Player']}\n"
               f"Computer's hit rate: {scores['Computer']} ")
         print("-" * 30)
         show_board(player_name, players_board, computer_board)
