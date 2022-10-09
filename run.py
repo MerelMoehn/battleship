@@ -87,7 +87,6 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
         players_board.guesses.append((x_cord, y_cord))
         os.system("clear")
         computer_board.guess_handling(x_cord, y_cord)
-        print(players_board.guesses)
         return False
 
 
@@ -104,7 +103,6 @@ def computer_guess(computer_board, players_board):
         else:
             computer_board.guesses.append((x_cord, y_cord))
             players_board.guess_handling(x_cord, y_cord)
-            print(computer_board.guesses)
             return False
 
 
@@ -237,8 +235,6 @@ def new_game():
 
     populate_board(players_board)
     populate_board(computer_board)
-    print(f"Computers loc: {computer_board.shiploc}")
-    print(f"Players board: {players_board.shiploc}")
     start_game(player_name, players_board, computer_board)
 
 
