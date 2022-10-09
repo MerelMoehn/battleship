@@ -81,7 +81,7 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
     If validation is succesful it appends guess, to guesses
     """
     if (x_cord, y_cord) in players_board.guesses:
-        print("You already guessed this location, try another")
+        print(" You already guessed this location, try another")
         return True
     else:
         players_board.guesses.append((x_cord, y_cord))
@@ -115,7 +115,7 @@ def keep_score(ptype):
     elif ptype == "Player":
         scores["Computer"] += 1
     else:
-        print("No score can be added")
+        print(" No score can be added")
 
 
 def calculate_winner(player_name):
@@ -123,10 +123,10 @@ def calculate_winner(player_name):
     Calculates whether there is a winner or not.
     """
     if scores["Computer"] == 4:
-        print("GAME OVER! The computer won")
+        print(" GAME OVER! The computer won")
         return False
     elif scores["Player"] == 4:
-        print(f"YOU WON! Congratulations {player_name}!")
+        print(f" YOU WON! Congratulations {player_name}!")
         return False
     else:
         return True
@@ -136,10 +136,10 @@ def show_board(player_name, players_board, computer_board):
     """
     Prints the current board status of both computer and player.
     """
-    print(f"{player_name} this is your board:\n")
+    print(f" {player_name} this is your board:\n")
     players_board.print()
     print("-" * 30)
-    print("This is the computer's board:\n")
+    print(" This is the computer's board:\n")
     computer_board.print()
 
 
@@ -152,14 +152,14 @@ def reset_game():
 
     while True:
         try:
-            reset_input = input("Do you want to reset the game?"
+            reset_input = input(" Do you want to reset the game?"
                                 "(Yes or No)\n")
             if reset_input == "Yes" or reset_input == "No":
                 break
             else:
                 raise ValueError()
         except ValueError():
-            print("Please enter Yes/No")
+            print(" Please enter Yes/No")
     if reset_input == "Yes":
         scores["Player"] = 0
         scores["Computer"] = 0
@@ -167,7 +167,7 @@ def reset_game():
         new_game()
     else:
         os.system("clear")
-        print("Alright, goodbye!")
+        print(" Alright, goodbye!")
 
 
 def start_game(player_name, players_board, computer_board):
@@ -181,34 +181,34 @@ def start_game(player_name, players_board, computer_board):
         try:
             while True:
                 try:
-                    guess_row = int(input("Guess a row in range 0-4:\n"))
+                    guess_row = int(input(" Guess a row in range 0-4:\n"))
                 except ValueError:
-                    print("That's not a number, try again")
+                    print(" That's not a number, try again")
                 else:
                     if guess_row in range(0, 5):
                         break
                     else:
-                        print("Out of range. Try again")
+                        print(" Out of range. Try again")
 
             while True:
                 try:
-                    guess_column = int(input("Guess a column between 0-4:\n"))
+                    guess_column = int(input(" Guess a column between 0-4:\n"))
                 except ValueError:
-                    print("That's not a number, try again")
+                    print(" That's not a number, try again")
                 else:
                     if guess_column in range(0, 5):
                         break
                     else:
-                        print("Out of range. Try again")
+                        print(" Out of range. Try again")
             if valid_cord(players_board, computer_board,
                           guess_row, guess_column):
                 continue
         except ValueError:
-            print("You already made this guess, try again")
+            print(" You already made this guess, try again")
         computer_guess(computer_board, players_board)
         print("-" * 30)
-        print(f"{player_name}'s hit rate: {scores['Player']}\n"
-              f"Computer's hit rate: {scores['Computer']} ")
+        print(f" {player_name}'s hit rate: {scores['Player']}\n"
+              f" Computer's hit rate: {scores['Computer']} ")
         print("-" * 30)
         show_board(player_name, players_board, computer_board)
         if not calculate_winner(player_name):
@@ -222,13 +222,13 @@ def new_game():
     it displays the boards, and will initialize the start of the game.
     """
 
-    player_name = input("Enter your name please: \n")
+    player_name = input(" Enter your name please: \n")
     print("-" * 30)
-    print(f"Hi, {player_name}\n")
-    print("The board grid is 5*5 and the number of ships is 4!\n")
-    print("Be aware, the top left corner is row: 0, col: 0\n")
-    print("If you hit, you will see an 'H' on the computer's board")
-    print("If you miss, you will see an 'X' on the board")
+    print(f" Hi, {player_name}\n")
+    print(" The board grid is 5*5 and the number of ships is 4!\n")
+    print(" Be aware, the top left corner is row: 0, col: 0\n")
+    print(" If you hit, you will see an 'H' on the computer's board")
+    print(" If you miss, you will see an 'X' on the board")
 
     players_board = Gameboard(ptype="Player")
     computer_board = Gameboard(ptype="Computer")
@@ -238,7 +238,7 @@ def new_game():
     start_game(player_name, players_board, computer_board)
 
 
-print("WELCOME TO BATTLESHIP! ARE YOU READY TO BATTLE?\n")
+print(" WELCOME TO BATTLESHIP! ARE YOU READY TO BATTLE?\n")
 
 
 new_game()
