@@ -9,7 +9,7 @@ In this document I will explain the approach and instructions for the BattleShip
 The last update to this file was: **Oktober 10, 2022**
 
 ## Deployed project
-The game can be played via the following link:
+The game can be played via the following link: https://battleship-mm.herokuapp.com/
 
 ## User Stories
 **User stories**
