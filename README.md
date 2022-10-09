@@ -35,11 +35,17 @@ The player wins if the sinks the 4 ships of the computer before the computer sin
 After the player wins or loses, he can choose to reset the game.
 
 **Features**
-![Image of logo](./assets/images/logo.png)
-* Logo: this directly indicates to the user that this website is about twenty-one.
+![Image of user input](./assets/images/userinput.png)
+* User input: the user can insert his guess for a row and column.
 
-![Image of name submit option](./assets/images/usernamepersonalisation.png)
-* Name submit: this functionality gives the user the option to submit his or her name. This will personalize the page and game. The input is required. The user can also submit the name by clicking 'enter'.
+![Image of input validation](./assets/images/userfeedback.png)
+* Input validation: the player gets feedback when the input is not valid. The validation checks for range(0-4), type(number), and if the guess has already been made before.
+
+![Image of score board](./assets/images/scoreboard.png)
+* Score board: to give the player a quick overview of the scores instead of counting the H's, a score board is displayed with the hit rate of both player and computer.
+
+![Image of boards](./assets/images/displayboard_hitsandmisses.png)
+* Boards: both the player's board and the computer's board are displayed. An 'H" represents a HIT, an X represents a MISS. The location of the player's ships are represented by an @. The computer's ships are hidden.
 
 
 ## Data model
