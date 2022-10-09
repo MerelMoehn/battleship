@@ -55,7 +55,14 @@ The class also includes several methods:
 
 ## Testing
 **Validators**
-PEP8 outcome
+PEP8 was installed via the following steps:
+* I rann the command pip3 install pycodestyle.
+* In my workspace, I pressed Cmd+Shift+P on Mac.
+* I typeed the word linter into the search bar, and clicked on Python: Select Linter.
+* I selected pycodestyle from the list.
+No errors were red underlined and no errors were shown in the PROBLEM tab besides:
+![Image of problem tab](./assets/images/warnings_problemtab.png)
+
 
 **Testing the User Stories from User Experience (UX) section**
 * As a user I want to play the online version of Battleship: the user can play the online version of this Battelship game via Heroku. The user is able to make a guess for a row and a column to try and hit one of the computer's ships. If the user sinks four of the computer's ships before the computer sinks all of his ships, the user wins.

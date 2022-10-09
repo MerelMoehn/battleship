@@ -45,7 +45,6 @@ class Gameboard:
         """
         Stores guesses and compares to ship location
         """
-
         self.board[x_cord][y_cord] = "X"
 
         if (x_cord, y_cord) in self.shiploc:
@@ -86,6 +85,7 @@ def valid_cord(players_board, computer_board, x_cord, y_cord):
         return True
     else:
         players_board.guesses.append((x_cord, y_cord))
+        os.system("clear")
         computer_board.guess_handling(x_cord, y_cord)
         print(players_board.guesses)
         return False
@@ -141,7 +141,7 @@ def show_board(player_name, players_board, computer_board):
     print(f"{player_name} this is your board:\n")
     players_board.print()
     print("-" * 30)
-    print("This is the computer's board:")
+    print("This is the computer's board:\n")
     computer_board.print()
 
 
@@ -201,7 +201,6 @@ def start_game(player_name, players_board, computer_board):
                         break
                     else:
                         print("Out of range. Try again")
-            os.system("clear")
             if valid_cord(players_board, computer_board,
                           guess_row, guess_column):
                 continue
@@ -242,7 +241,7 @@ def new_game():
     start_game(player_name, players_board, computer_board)
 
 
-print("WELCOME! ARE YOU READY TO BATTLE?\n")
+print("WELCOME TO BATTLESHIP! ARE YOU READY TO BATTLE?\n")
 
 
 new_game()
