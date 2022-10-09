@@ -208,8 +208,8 @@ def start_game(player_name, players_board, computer_board):
             print("You already made this guess, try again")
         computer_guess(computer_board, players_board)
         print("-" * 30)
-        print(f"{player_name}'s hit rate: {scores['Player']},\
-             the computer's hit rate: {scores['Computer']} ")
+        print(f"{player_name}'s hit rate: {scores['Player']}\n"
+              f"Computer's hit rate: {scores['Computer']} ")
         print("-" * 30)
         show_board(player_name, players_board, computer_board)
         if not calculate_winner(player_name):
