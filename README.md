@@ -6,7 +6,7 @@ Welcome USER_NAME,
 
 In this document I will explain the approach and instructions for the BattleShip game. The purpose of this project is let the user enjoy an online game called Battleship. The goal of the game is to defeat the computer sinking his ships. Though, the player must be quick because otherwise the bank may sink all of the player's ship. 
 
-The last update to this file was: **Oktober 10, 2022**
+The last update to this file was: **Oktober 11, 2022**
 
 ## Deployed project
 The game can be played via the following link: https://battleship-mm.herokuapp.com/

@@ -222,8 +222,15 @@ def new_game():
     Starts a new game. It start by resetting the scores,
     it displays the boards, and will initialize the start of the game.
     """
-
-    player_name = input(" Enter your name please: \n")
+    while True:
+        try:
+            player_name = input(" Enter your name please: \n")
+            if str.isalpha(player_name):
+                break
+            else:
+                raise ValueError()
+        except ValueError:
+            print(" Is this really a name? Try again")
     print(" " + "-" * 30)
     print(f" Hi, {player_name}\n")
     print(" The board grid is 5*5 and the number of ships is 4!\n")
