@@ -4,6 +4,7 @@ import os
 scores = {"Player": 0, "Computer": 0}
 
 
+# part of this class is based on Code Institute Portfolio Project Scope video
 class Gameboard:
     """
     This class includes the main board, and two instances
@@ -108,7 +109,7 @@ def computer_guess(computer_board, players_board):
 
 def keep_score(ptype):
     """
-    Adds a point to the score if Player or Computer hit's
+    Adds a point to the score if Player or Computer has a hit
     """
     if ptype == "Computer":
         scores["Player"] += 1
@@ -206,14 +207,19 @@ def start_game(player_name, players_board, computer_board):
                 continue
         except ValueError:
             print(" You already made this guess, try again")
+
         computer_guess(computer_board, players_board)
+
         print(" " + "-" * 30)
         print(f" {player_name}'s hit rate: {scores['Player']}\n"
               f" Computer's hit rate: {scores['Computer']} ")
         print(" " + "-" * 30)
+
         show_board(player_name, players_board, computer_board)
+
         if not calculate_winner(player_name):
             break
+
     reset_game()
 
 
@@ -231,6 +237,7 @@ def new_game():
                 raise ValueError()
         except ValueError:
             print(" Is this really a name? Try again")
+
     print(" " + "-" * 30)
     print(f" Hi, {player_name}\n")
     print(" The board grid is 5*5 and the number of ships is 4!\n")
