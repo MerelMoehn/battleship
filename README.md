@@ -77,11 +77,26 @@ No errors were red underlined and no errors were shown in the PROBLEM tab beside
 * As a user I want to understand how this game works: the user sees the instructions of the game when the game starts. Step by step the user is asked to make a guess. If the user input is not valid, the user receives feedback why it is invalid, and the user can try again.
 
 **Bugs found and solved**
-* Break while True loop 1: there was a bug that did not continue the while True loop after the user inserted a number outside of the scope. This was fixed by adding a return value and using that to break the while loop.
-* Break while True loop 2: there was a bug that kept the game running even though there was a winner. This was fixed by using the return value in an if statement and letting the loop break after the return was False.
-* Reset game input not accepted: there was a bug when the user inserted 'Yes' for resetting the game, the system did not recognize the 'Yes' correctly. This was fixed by using a try and except statement instead of an if statement.
-* System clear: console was cleared at the wrong moment. By putting it before the guess_handling it now shows the result of the player's guess.
-* Input validation name: user could leave name empty or enter digit. Fixed by adding try/except statement.
+* Break while True loop 1:
+     * Test: insert a number above 4
+     * Bug: while True loop did not continue after the user inserted a number outside of the scope. 
+     * Fix: fixed by adding a return value and using that to break the while loop.
+* Break while True loop 2:
+     * Test: played game until there was a winner
+     * Bug: game kept running even though there was a winner.
+     * Fix: using the return value in an if statement and letting the loop break after the return was False.
+* Reset game input not accepted:
+     * Test: inserted a 'Yes' as input for the reset question
+     * Bug: Yes did not lead to a reset
+     * Fix: used a try and except statement instead of an if statement.
+* System clear: 
+     * Test: ran the game
+     * Bug: you could not see whether the player had a hit or miss anymore
+     * Fix: By putting it before the guess_handling it now shows the result of the player's guess.
+* Input validation name:
+     * Test: input nothing and a number as a name
+     * Bug: user could leave name empty or enter digit
+     * Fix: adding try/except statement.
 
 **Unsolved bugs**
 As far as I could find there are no outstanding bugs.
