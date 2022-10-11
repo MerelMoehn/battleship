@@ -110,6 +110,9 @@ The project was deployed to Heroku using the following steps:
 4. I linked the Heroku app to the repository
 5. Then I selected 'deploy'
 
+If you want to make a local copy of the GitHub repository you can follow these steps:
+https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+
 ## Credits
 **Code**
 * The structure of the class is based on the CodeInstitute scope example
