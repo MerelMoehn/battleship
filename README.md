@@ -51,9 +51,9 @@ After the player wins or loses, he can choose to reset the game.
 * Result: after 4 ships are sunk by either the player or the computer, the game will display a result message.
 
 ## Data model
-In this project I use a Board class model. There are two instances of the Board class model: the Players Board and the Computer Board. 
+In this project I use a GamePlayer class model. There are two instances of the GamePlayer class model: the Player and the Computer GamePlayer 
 
-The Board class model stores the type of the board (player or computer), number of ships, the guesses that are made, and the ship locations.
+The GamePlayer class model stores the type of the player (player or computer), number of ships, the guesses that are made, and the ship locations.
 
 The class also includes several methods:
 * The print method: this method prints the board. The code for this method is based on the CodeInstitute scope model project.
