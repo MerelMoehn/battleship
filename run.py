@@ -5,10 +5,10 @@ scores = {"Player": 0, "Computer": 0}
 
 
 # part of this class is based on Code Institute Portfolio Project Scope video
-class Gameboard:
+class GamePlayer:
     """
-    This class includes the main board, and two instances
-    of game boards for both the player and the computer.
+    This class includes a general Player, and two instances
+    of players for both the player and the computer.
     It includes the board size, the players name, type of board,
     and the number of ships. It includes the methods for adding ships,
     guesses and printing the board to the user.
@@ -51,15 +51,15 @@ class Gameboard:
         if (x_cord, y_cord) in self.shiploc:
             self.board[x_cord][y_cord] = "H"
             if self.ptype == "Computer":
-                print("Well done, It's a hit!")
+                print(" Well done, It's a hit!")
             else:
-                print("The computer hit one of your ships!")
+                print(" The computer hit one of your ships!")
             keep_score(self.ptype)
         else:
             if self.ptype == "Computer":
-                print("You missed!")
+                print(" You missed!")
             else:
-                print("Lucky you, the computer missed!")
+                print(" Lucky you, the computer missed!")
 
 
 def populate_board(board):
@@ -76,22 +76,22 @@ def populate_board(board):
         board.add_ship(x_cord, y_cord)
 
 
-def valid_cord(players_board, computer_board, x_cord, y_cord):
+def valid_cord(game_player, game_computer, x_cord, y_cord):
     """
     Validates the coordinates against earlier guesses.
     If validation is succesful it appends guess, to guesses
     """
-    if (x_cord, y_cord) in players_board.guesses:
+    if (x_cord, y_cord) in game_player.guesses:
         print(" You already guessed this location, try another")
         return True
     else:
-        players_board.guesses.append((x_cord, y_cord))
+        game_player.guesses.append((x_cord, y_cord))
         os.system("clear")
-        computer_board.guess_handling(x_cord, y_cord)
+        game_computer.guess_handling(x_cord, y_cord)
         return False
 
 
-def computer_guess(computer_board, players_board):
+def computer_guess(game_computer, game_player):
     """
     Creates a random guess for the computer,
     and appends it to the computer's guesses
@@ -99,11 +99,11 @@ def computer_guess(computer_board, players_board):
     while True:
         x_cord = randint(0, 4)
         y_cord = randint(0, 4)
-        if (x_cord, y_cord) in computer_board.guesses:
+        if (x_cord, y_cord) in game_computer.guesses:
             continue
         else:
-            computer_board.guesses.append((x_cord, y_cord))
-            players_board.guess_handling(x_cord, y_cord)
+            game_computer.guesses.append((x_cord, y_cord))
+            game_player.guess_handling(x_cord, y_cord)
             return False
 
 
@@ -133,15 +133,15 @@ def calculate_winner(player_name):
         return True
 
 
-def show_board(player_name, players_board, computer_board):
+def show_board(player_name, game_player, game_computer):
     """
     Prints the current board status of both computer and player.
     """
     print(f" {player_name} this is your board:\n")
-    players_board.print()
+    game_player.print()
     print(" " + "-" * 30)
     print(" This is the computer's board:\n")
-    computer_board.print()
+    game_computer.print()
     print(" " + "-" * 30)
 
 
@@ -172,12 +172,12 @@ def reset_game():
         print(" Alright, goodbye!")
 
 
-def start_game(player_name, players_board, computer_board):
+def start_game(player_name, game_player, game_computer):
     """
     This starts the new game.
     It displays the boards and let the player input its guesses
     """
-    show_board(player_name, players_board, computer_board)
+    show_board(player_name, game_player, game_computer)
 
     while True:
         try:
@@ -202,20 +202,20 @@ def start_game(player_name, players_board, computer_board):
                         break
                     else:
                         print(" Out of range. Try again")
-            if valid_cord(players_board, computer_board,
+            if valid_cord(game_player, game_computer,
                           guess_row, guess_column):
                 continue
         except ValueError:
             print(" You already made this guess, try again")
 
-        computer_guess(computer_board, players_board)
+        computer_guess(game_computer, game_player)
 
         print(" " + "-" * 30)
         print(f" {player_name}'s hit rate: {scores['Player']}\n"
               f" Computer's hit rate: {scores['Computer']} ")
         print(" " + "-" * 30)
 
-        show_board(player_name, players_board, computer_board)
+        show_board(player_name, game_player, game_computer)
 
         if not calculate_winner(player_name):
             break
@@ -245,12 +245,12 @@ def new_game():
     print(" If you hit, you will see an 'H' on the computer's board")
     print(" If you miss, you will see an 'X' on the board")
 
-    players_board = Gameboard(ptype="Player")
-    computer_board = Gameboard(ptype="Computer")
+    game_player = GamePlayer(ptype="Player")
+    game_computer = GamePlayer(ptype="Computer")
 
-    populate_board(players_board)
-    populate_board(computer_board)
-    start_game(player_name, players_board, computer_board)
+    populate_board(game_player)
+    populate_board(game_computer)
+    start_game(player_name, game_player, game_computer)
 
 
 print(" WELCOME TO BATTLESHIP! ARE YOU READY TO BATTLE?\n")
