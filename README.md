@@ -76,6 +76,10 @@ The class also includes several methods:
 * The add ship method: this methods adds a ship to the board by taking the random generated coordinates as parameters.
 * The guess_handling method: this method checks whether the guess results in a HIT or in a MISS, and calls the keep_score function in case of a HIT.
 
+## External Libraries
+For this project I made us of two external libraries:
+* the random library for generating random numbers.
+* the os library for clearing the terminal.
 
 ## Testing
 **Validators**
