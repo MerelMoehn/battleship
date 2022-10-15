@@ -38,9 +38,10 @@ The player wins if the sinks the 4 ships of the computer before the computer sin
 After the player wins or loses, he can choose to reset the game.
 
 **Features**
-
+![Image of username input](./assets/images/username_input.png)
 * Username input: the player is asked to insert his/her name.
 
+![Image of instructions input](./assets/images/instructions_input.png)
 * Instructions input: the player can choose to read the instructions, or not.
 
 ![Image of user input](./assets/images/userinput.png)
