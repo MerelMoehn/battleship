@@ -160,7 +160,7 @@ def reset_game():
                 break
             else:
                 raise ValueError()
-        except ValueError():
+        except ValueError:
             print(" Please enter Yes/No")
     if reset_input == "Yes":
         scores["Player"] = 0
@@ -173,6 +173,9 @@ def reset_game():
 
 
 def input_row():
+    """"
+    Asks the player to guess a row
+    """
     while True:
         try:
             input_row = int(input(" Guess a row in range 0-4:\n"))
@@ -187,6 +190,9 @@ def input_row():
 
 
 def input_column():
+    """"
+    Asks the player to guess a column
+    """
     while True:
         try:
             input_column = int(input(" Guess a column between 0-4:\n"))
@@ -201,6 +207,10 @@ def input_column():
 
 
 def instructions(player_name):
+    """
+    This function asks the playing whether it wants to read instructions
+    And if the player is ready to start after reading
+    """
     while True:
         try:
             instr_input = input(" Do you want to see the instructions?"
@@ -209,11 +219,12 @@ def instructions(player_name):
                 break
             else:
                 raise ValueError()
-        except ValueError():
+        except ValueError:
             print(" Please enter Yes/No")
+
     if instr_input == "Yes":
         print(" " + "-" * 30)
-        print(" INSTRUCTIONS:")
+        print(" BATTLESHIP INSTRUCTIONS:")
         print(" The board grid is 5*5 and the number of ships is 4!\n")
         print(" Be aware, the top left corner is row: 0, col: 0\n")
         print(" Your ships are displayed with an @")
@@ -221,8 +232,20 @@ def instructions(player_name):
         print(" If you miss, you will see an 'X' on the board\n")
         print(" EXAMPLE:")
         print(" If you want to hit the second column and the second row"
-              "the coordinates would be [1,1]\n")
+              ", the coordinates would be [1,1]\n")
         print(" " + "-" * 30)
+
+        # asks whether the player is ready to start
+        while True:
+            try:
+                start_input = input("When you are ready, type 'start'\n")
+                if start_input == "start":
+                    os.system(clear)
+                    break
+                else:
+                    raise ValueError()
+            except ValueError:
+                print(" Please enter 'start'")
     else:
         os.system("clear")
         print(f" Alright {player_name}, Let's start!")
