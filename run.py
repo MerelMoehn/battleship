@@ -233,7 +233,7 @@ def instructions(player_name):
         print(" If you miss, you will see an 'X' on the board\n")
         print(" EXAMPLE:")
         print(" To hit the second column and the second row:"
-              ", the coordinates are [1,1]\n")
+              " the coordinates are [1,1]\n")
         print(" " + "-" * 30)
 
         # asks whether the player is ready to start
