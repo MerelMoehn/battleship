@@ -172,6 +172,34 @@ def reset_game():
         print(" Alright, goodbye!")
 
 
+def input_row():
+    while True:
+        try:
+            input_row = int(input(" Guess a row in range 0-4:\n"))
+        except ValueError:
+            print(" That's not a number, try again")
+        else:
+            if input_row in range(0, 5):
+                return input_row
+                break
+            else:
+                print(" Out of range. Try again")
+
+
+def input_column():
+    while True:
+        try:
+            input_column = int(input(" Guess a column between 0-4:\n"))
+        except ValueError:
+            print(" That's not a number, try again")
+        else:
+            if input_column in range(0, 5):
+                return input_column
+                break
+            else:
+                print(" Out of range. Try again")
+
+
 def start_game(player_name, game_player, game_computer):
     """
     This starts the new game.
@@ -181,30 +209,13 @@ def start_game(player_name, game_player, game_computer):
 
     while True:
         try:
-            while True:
-                try:
-                    guess_row = int(input(" Guess a row in range 0-4:\n"))
-                except ValueError:
-                    print(" That's not a number, try again")
-                else:
-                    if guess_row in range(0, 5):
-                        break
-                    else:
-                        print(" Out of range. Try again")
+            guess_row = input_row()
+            guess_column = input_column()
 
-            while True:
-                try:
-                    guess_column = int(input(" Guess a column between 0-4:\n"))
-                except ValueError:
-                    print(" That's not a number, try again")
-                else:
-                    if guess_column in range(0, 5):
-                        break
-                    else:
-                        print(" Out of range. Try again")
             if valid_cord(game_player, game_computer,
                           guess_row, guess_column):
                 continue
+
         except ValueError:
             print(" You already made this guess, try again")
 

@@ -2,7 +2,7 @@
 
 #LET'S PLAY BATTLESHIP
 
-Welcome USER_NAME,
+Welcome,
 
 In this document I will explain the approach and instructions for the BattleShip game. The purpose of this project is let the user enjoy an online game called Battleship. The goal of the game is to defeat the computer sinking his ships. Though, the player must be quick because otherwise the bank may sink all of the player's ship. 
 
@@ -49,6 +49,13 @@ After the player wins or loses, he can choose to reset the game.
 * Boards: both the player's board and the computer's board are displayed. An 'H" represents a HIT, an X represents a MISS. The location of the player's ships are represented by an @. The computer's ships are hidden.
 
 * Result: after 4 ships are sunk by either the player or the computer, the game will display a result message.
+
+**Future Features**
+The following features would be nice to add in the future:
+
+* Letting the player decide the size of the grid
+* Letting the player decide the number of ships
+* Being able to add ships that are larger than one dot on the grid
 
 ## Data model
 In this project I use a GamePlayer class model. There are two instances of the GamePlayer class model: the Player and the Computer GamePlayer 
