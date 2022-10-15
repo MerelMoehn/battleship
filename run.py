@@ -4,7 +4,8 @@ import os
 scores = {"Player": 0, "Computer": 0}
 
 
-# part of this class is based on Code Institute Portfolio Project Scope video
+# the structure of this class is partly based on Code Institute's
+# Portfolio Project Scope video
 class GamePlayer:
     """
     This class includes a general Player, and two instances
@@ -258,6 +259,7 @@ def start_game(player_name, game_player, game_computer):
     """
     show_board(player_name, game_player, game_computer)
 
+    # asks the players input and validates it
     while True:
         try:
             guess_row = input_row()
@@ -269,15 +271,19 @@ def start_game(player_name, game_player, game_computer):
         except ValueError:
             print(" You already made this guess, try again")
 
+        # generates the computer's guess and guess result
         computer_guess(game_computer, game_player)
 
+        # displays the scores
         print(" " + "-" * 30)
         print(f" {player_name}'s hit rate: {scores['Player']}\n"
               f" Computer's hit rate: {scores['Computer']} ")
         print(" " + "-" * 30)
 
+        # shows the board after playing a round
         show_board(player_name, game_player, game_computer)
 
+        # checks whether there is a winner
         if not calculate_winner(player_name):
             break
 
@@ -289,6 +295,8 @@ def new_game():
     Starts a new game. It start by resetting the scores,
     it displays the boards, and will initialize the start of the game.
     """
+
+    # asks for the player's name and validates input
     while True:
         try:
             player_name = input(" Enter your name please: \n")

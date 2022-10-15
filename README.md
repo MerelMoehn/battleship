@@ -141,8 +141,8 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloni
 
 ## Credits
 **Code**
-* The structure of the class is based on the Code Institute scope example
-* The code for the printing of the board is the Code Institute scope example
+* The structure of the class is based on the Code Institute Portfolio Project Scope (no link available)
+* The code for the printing of the board is the Code Institute Portfolio Project Scope (no link available)
 
 **Acknowledgements**
 * I want to thank the tutors for guiding me 
