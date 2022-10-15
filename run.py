@@ -238,9 +238,9 @@ def instructions(player_name):
         # asks whether the player is ready to start
         while True:
             try:
-                start_input = input("When you are ready, type 'start'\n")
+                start_input = input(" When you are ready, type 'start'\n")
                 if start_input == "start":
-                    os.system(clear)
+                    os.system("clear")
                     break
                 else:
                     raise ValueError()

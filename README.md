@@ -38,6 +38,7 @@ The player wins if the sinks the 4 ships of the computer before the computer sin
 After the player wins or loses, he can choose to reset the game.
 
 **Features**
+
 ![Image of username input](./assets/images/username_input.png)
 * Username input: the player is asked to insert his/her name.
 
@@ -92,11 +93,11 @@ No errors were red underlined and no errors were shown in the PROBLEM tab beside
 * As a user I want to understand how this game works: the user can choose to see the instructions of the game when the game starts. Step by step the user is asked to make a guess. If the user input is not valid, the user receives feedback why it is invalid, and the user can try again.
 
 **Bugs found and solved**
-* Break while True loop 1:
+* Break while True loop input guess:
      * Test: insert a number above 4
      * Bug: while True loop did not continue after the user inserted a number outside of the scope. 
      * Fix: fixed by adding a return value and using that to break the while loop.
-* Break while True loop 2:
+* Break while True loop of start_game:
      * Test: played game until there was a winner
      * Bug: game kept running even though there was a winner.
      * Fix: using the return value in an if statement and letting the loop break after the return was False.
