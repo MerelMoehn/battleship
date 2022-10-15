@@ -200,6 +200,34 @@ def input_column():
                 print(" Out of range. Try again")
 
 
+def instructions(player_name):
+    while True:
+        try:
+            instr_input = input(" Do you want to see the instructions?"
+                                "(Yes or No)\n")
+            if instr_input == "Yes" or instr_input == "No":
+                break
+            else:
+                raise ValueError()
+        except ValueError():
+            print(" Please enter Yes/No")
+    if instr_input == "Yes":
+        print(" " + "-" * 30)
+        print(" INSTRUCTIONS:")
+        print(" The board grid is 5*5 and the number of ships is 4!\n")
+        print(" Be aware, the top left corner is row: 0, col: 0\n")
+        print(" Your ships are displayed with an @")
+        print(" If you hit, you will see an 'H' on the computer's board")
+        print(" If you miss, you will see an 'X' on the board\n")
+        print(" EXAMPLE:")
+        print(" If you want to hit the second column and the second row"
+              "the coordinates would be [1,1]\n")
+        print(" " + "-" * 30)
+    else:
+        os.system("clear")
+        print(f" Alright {player_name}, Let's start!")
+
+
 def start_game(player_name, game_player, game_computer):
     """
     This starts the new game.
@@ -215,7 +243,6 @@ def start_game(player_name, game_player, game_computer):
             if valid_cord(game_player, game_computer,
                           guess_row, guess_column):
                 continue
-
         except ValueError:
             print(" You already made this guess, try again")
 
@@ -251,16 +278,17 @@ def new_game():
 
     print(" " + "-" * 30)
     print(f" Hi, {player_name}\n")
-    print(" The board grid is 5*5 and the number of ships is 4!\n")
-    print(" Be aware, the top left corner is row: 0, col: 0\n")
-    print(" If you hit, you will see an 'H' on the computer's board")
-    print(" If you miss, you will see an 'X' on the board")
+    instructions(player_name)
 
+    # Creates GamePlayer instances of either Player or Computer
     game_player = GamePlayer(ptype="Player")
     game_computer = GamePlayer(ptype="Computer")
 
+    # Populates the boards of both players
     populate_board(game_player)
     populate_board(game_computer)
+
+    # Starts the game
     start_game(player_name, game_player, game_computer)
 
 
